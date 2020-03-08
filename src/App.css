@@ -29,14 +29,14 @@
 }
 .rcw-header{
   background-color: White !important;
-  color: black !important;
+  color: white !important;
+  display: none !important;
 }
 .rcw-messages-container{
   background-color: #eaeaea !important;
 }
 .rcw-client{
-  background-color: #813ab7d4 !important;
-  color: white !important;
+  background-color: white !important;
 }
 .rcw-full-screen .rcw-header{
   border-radius: 35px !important;
@@ -45,13 +45,37 @@
   height: 70px !important;
 }
 
+.input-style{
+  border-radius: 5px;
+}
+
 /* .rcw-client, .rcw-response{
   max-width: inherit !important;
 } */
+.rcw-client{
+  background-color: #F1CEBA !important;
+  color: #182020 !important;
+}
+#name{
+  width: 100%;
+  border-radius: 5px;
+}
 
 .hide {
   display: none;
 }
+
+.rcw-messages-container {
+  background-image: url("./bg2.jpg");
+  background-size:     cover; 
+  background-repeat:   no-repeat;
+  background-position: center center; 
+}
+
+.rcw-message {
+  opacity: 100% !important;
+}
+
 
 @keyframes App-logo-spin {
   from {

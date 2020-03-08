@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Widget, addResponseMessage, toggleWidget, renderCustomComponent } from "react-chat-widget";
 import logo from "./boticon.png";
+import userIng from "./bobcat.png";
 import "./App.css";
 import "react-chat-widget/lib/styles.css";
 import Modal from 'react-bootstrap/Modal';
@@ -120,14 +121,20 @@ class App extends Component {
 
   render() {
 
-    let modal = (<Modal show={this.state.show} onHide={() => this.toggleShow}>
+    let modal = (<Modal 
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+                show={this.state.show} onHide={() => this.toggleShow}>
                   <Modal.Header >
-                    <Modal.Title>Please provide us some details so we can help you</Modal.Title>
+                    <Modal.Title id="contained-modal-title-vcenter">Please provide us some details so we can help you</Modal.Title>
                   </Modal.Header>
                   <Modal.Body>
                     <form>
-                      <label>Name:</label><br/>
-                      <input type="text" id="name" name="name" /><br/>
+                      <div className="form-group">
+                        <label >Name:</label><br/>
+                        <input type="text" id="name" name="name" className="input-style" /><br/><br />
+                      </div>
                       <Select options={this.state.finalArr} isMulti onChange={selectedOption => {this.setState({selectedArr: selectedOption})}}/>
                     </form>
 
@@ -154,8 +161,6 @@ class App extends Component {
           showCloseButton={false}
           profileAvatar={logo}
           handleNewUserMessage={this.handleNewUserMessage}
-          title="Hack Therapy"
-          subtitle="A friend in need is a friend indeed"
         />
       </div>
     );
