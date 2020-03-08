@@ -25,8 +25,23 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #813ab7d4;
 }
+.rcw-header{
+  background-color: White !important;
+  color: black !important;
+}
+.rcw-messages-container{
+  background-color: #eaeaea !important;
+}
+.rcw-client{
+  background-color: #813ab7d4 !important;
+  color: white !important;
+}
+
+/* .rcw-client, .rcw-response{
+  max-width: inherit !important;
+} */
 
 @keyframes App-logo-spin {
   from {
