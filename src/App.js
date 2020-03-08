@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       context: {},
       show: true,
-      finalArr: []
+      finalArr: [],
+      selectedArr: []
     };
   }
 
@@ -96,7 +97,7 @@ class App extends Component {
       addResponseMessage(response["message"])
     );
     //TODO:toggleWidget();
-    this.setState();
+    //this.setState();
   }
 
   handleNewUserMessage = newMessage => {
@@ -108,9 +109,10 @@ class App extends Component {
   };
 
   toggleShow(){
+    
     this.setState({
-      show:!this.state.show
-    })
+      show: !this.state.show
+    });
   }
 
   storeInLocal(name, subjects){
@@ -118,34 +120,42 @@ class App extends Component {
     localStorage.setItem('subjects', subjects);
   }
 
+  onModalClose() {
+    this.setState({show: false});
+    toggleWidget();
+  }
+
   render() {
+
+    let modal = (<Modal show={this.state.show} onHide={() => this.toggleShow}>
+    <Modal.Header >
+      <Modal.Title>Please provide us some details so we can help you</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      <form>
+        <label>Name:</label><br/>
+        <input type="text" id="name" name="name" /><br/>
+        <Select options={this.state.finalArr} isMulti onChange={selectedOption => {this.setState({selectedArr: selectedOption})}}/>
+      </form>
+
+    </Modal.Body>
+    <Modal.Footer>
+      <Button variant="primary" onClick={() => {
+        this.setState({show: false});
+        toggleWidget();
+        var context = this.state.context;
+        context['courses'] = this.state.selectedArr;
+        this.setState({context: context});
+        console.log(this.state.context);
+        
+      }}>
+        Save
+      </Button>
+    </Modal.Footer>
+  </Modal>)
     return (
       <div className="App">
-        <Modal show={this.state.show} onHide={() => this.toggleShow}>
-          <Modal.Header >
-            <Modal.Title>Please provide us some details so we can help you</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <form>
-              <label for="name">Name:</label><br/>
-              <input type="text" id="name" name="name" /><br/>
-              <Select options={this.state.finalArr} isMulti />
-              
-              <Button variant="primary" type="submit" onClick={this.storeInLocal(name, subjects)}>
-                Submit
-              </Button>
-            </form>
-
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" >
-              Close
-            </Button>
-            <Button variant="primary" >
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        {this.state.show ? modal: null}
         
         <Widget
           fullScreenMode={true}
