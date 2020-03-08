@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Widget, addResponseMessage, toggleWidget, renderCustomComponent } from "react-chat-widget";
 import logo from "./boticon.png";
-import userIng from "./bobcat.png";
 import "./App.css";
 import "react-chat-widget/lib/styles.css";
 import Modal from 'react-bootstrap/Modal';
