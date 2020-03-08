@@ -19,7 +19,6 @@ class App extends Component {
       show: true,
       finalArr: [],
       selectedArr: []
-      link_pres: false
     };
   }
 
@@ -84,8 +83,6 @@ class App extends Component {
     this.sendMessage("").then(response =>
       addResponseMessage(response["message"])
     );
-    toggleWidget();
-    //this.setState();
   }
 
   handleNewUserMessage = newMessage => {
@@ -124,31 +121,30 @@ class App extends Component {
   render() {
 
     let modal = (<Modal show={this.state.show} onHide={() => this.toggleShow}>
-    <Modal.Header >
-      <Modal.Title>Please provide us some details so we can help you</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <form>
-        <label>Name:</label><br/>
-        <input type="text" id="name" name="name" /><br/>
-        <Select options={this.state.finalArr} isMulti onChange={selectedOption => {this.setState({selectedArr: selectedOption})}}/>
-      </form>
+                  <Modal.Header >
+                    <Modal.Title>Please provide us some details so we can help you</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <form>
+                      <label>Name:</label><br/>
+                      <input type="text" id="name" name="name" /><br/>
+                      <Select options={this.state.finalArr} isMulti onChange={selectedOption => {this.setState({selectedArr: selectedOption})}}/>
+                    </form>
 
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="primary" onClick={() => {
-        this.setState({show: false});
-        toggleWidget();
-        var context = this.state.context;
-        context['courses'] = this.state.selectedArr;
-        this.setState({context: context});
-        console.log(this.state.context);
-        
-      }}>
-        Save
-      </Button>
-    </Modal.Footer>
-  </Modal>)
+                  </Modal.Body>
+                  <Modal.Footer>
+                  <Button variant="primary" onClick={() => {
+                    this.setState({show: false});
+                    toggleWidget();
+                    var context = this.state.context;
+                    context['courses'] = this.state.selectedArr;
+                    this.setState({context: context});
+                    console.log(this.state.context);  
+                  }}>
+                    Save
+                    </Button>
+                  </Modal.Footer>
+                </Modal>)
     return (
       <div className="App">
         {this.state.show ? modal: null}
