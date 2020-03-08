@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import { Widget, addResponseMessage, toggleWidget } from "react-chat-widget";
-import logo from "./logo.svg";
+import { Widget, addResponseMessage, toggleWidget, renderCustomComponent } from "react-chat-widget";
+import logo from "./boticon.png";
 import "./App.css";
 import "react-chat-widget/lib/styles.css";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Select from 'react-select';
+import Microlink from '@microlink/react';
+
 
 class App extends Component {
   constructor(props) {
@@ -15,23 +17,9 @@ class App extends Component {
     this.state = {
       context: {},
       show: true,
-      finalArr: []
+      finalArr: [],
+      link_pres: false
     };
-  }
-
-  formatDate(){
-    var tempArr=this.state.filteredData;
-    var finalArr={}
-    for(var i=0;i<tempArr.length;i++){
-      finalArr[i]={
-        label : tempArr[i].course_title,
-        value : tempArr[i].course_id
-      }
-    }
-
-    this.setState({
-      finalArr: finalArr
-    });
   }
 
   sendMessage(message) {
@@ -95,28 +83,36 @@ class App extends Component {
     this.sendMessage("").then(response =>
       addResponseMessage(response["message"])
     );
-    //TODO:toggleWidget();
+    toggleWidget();
     this.setState();
   }
 
   handleNewUserMessage = newMessage => {
     console.log(`New message incomig! ${newMessage}`);
     // Now send the message throught the backend API
-    this.sendMessage(newMessage).then(response =>
+    this.sendMessage(newMessage).then(response =>{
       addResponseMessage(response["message"])
-    );
+       if(Object.keys(this.state.context).includes("memes")){
+          renderCustomComponent(Microlink, {url: this.state.context.memes});
+          renderCustomComponent(Microlink, {url: this.state.context.music});
+          var context = this.state.context;
+          delete this.state.context.memes;
+          delete this.state.context.music;
+          this.setState({context: context});
+       }
+    });
   };
 
-  toggleShow(){
-    this.setState({
-      show:!this.state.show
-    })
-  }
+   toggleShow(){
+     this.setState({
+       show:!this.state.show
+     })
+   }
 
-  storeInLocal(name, subjects){
-    localStorage.setItem('name', name);
-    localStorage.setItem('subjects', subjects);
-  }
+   storeInLocal(name, subjects){
+     localStorage.setItem('name', name);
+     localStorage.setItem('subjects', subjects);
+   }
 
   render() {
     return (
@@ -150,11 +146,11 @@ class App extends Component {
         <Widget
           fullScreenMode={true}
           showCloseButton={false}
+          profileAvatar={logo}
           handleNewUserMessage={this.handleNewUserMessage}
           title="Hack Therapy"
           subtitle="A friend in need is a friend indeed"
         />
-
       </div>
     );
   }
