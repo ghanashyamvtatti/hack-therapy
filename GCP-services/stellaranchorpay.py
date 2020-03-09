@@ -25,7 +25,7 @@ def hello_world(request):
     cash = request_json["money"]
     print (cash)
     
-    source_keypair = Keypair.from_secret("SCZ7QIFLPIQHQJ7SRDSJ7DJRLTDBNEFH7KUPQQCDUTSZ745DDXIZIQMR")
+    source_keypair = Keypair.from_secret("xxxxxxxxxxxxxxxxxxxxxxxxxxx")
     server = Server(horizon_url="https://horizon-testnet.stellar.org")
     source_account = server.load_account(account_id=source_keypair.public_key)
     

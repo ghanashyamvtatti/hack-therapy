@@ -28,13 +28,13 @@ def hello_world(request):
     request_json = request.get_json()
     
     url = "https://sandbox.api.it.nyu.edu/class-roster-exp/classes?course_id=" + request_json["id"]
-    header = {"Authorization": "Bearer 50075d77-fa22-30ae-a9e2-7dd3e527edee"}
+    header = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxx"}
     res = requests.get(url,headers=header).json()
     print (res)
     name = res[0]["instructor_name"].replace("," , " ").replace("." , " ")
     text = "Hi " + name + ", Students in your class are having a tought time coping up with course load. Kindly look into the matter."
 
-    sg = sendgrid.SendGridAPIClient('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')
+    sg = sendgrid.SendGridAPIClient('xxxxxxxxxxxxxxxxxxxxxxxxxx')
     data = {
       "personalizations": [
         {

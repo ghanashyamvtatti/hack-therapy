@@ -26,7 +26,7 @@ def hello_world(request):
     import requests
     import json
     url = "https://sandbox.api.it.nyu.edu/course-catalog-exp/courses"
-    header1 = {"Authorization": "Bearer 50075d77-fa22-30ae-a9e2-7dd3e527edee"}
+    header1 = {"Authorization": "Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}
     res = requests.get(url,headers=header1).json()
 
     response = flask.jsonify(res)

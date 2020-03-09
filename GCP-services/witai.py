@@ -7,7 +7,7 @@ from twilio.rest import Client
 
 # {'document_tone': {'tones': [{'score': 0.597205, 'tone_id': 'sadness', 'tone_name': 'Sadness'}, {'score': 0.588447, 'tone_id': 'fear', 'tone_name': 'Fear'}]}}
 
-client = Wit("OS6LK4DLJIEIYI5QZGGMAEBA46I4VEM3")
+client = Wit("xxxxxxxxxxxxxxxxxxxxxxxxx")
 intent_action_map = {
     'greet': ['Hi. How are you doing today?', 'How can I support you today?', 'Hello. How can I help you today?'],
     'feeling': ["I'm sorry to hear that. Would you like to tell me about it?",
@@ -96,13 +96,13 @@ def handle_intents(request_json):
         elif severity == 3 or ('entities' in witai_resp and 'suicidal' in witai_resp['entities']):
             # Alert emergency contact
             print("Severeity heavy anthe anta")
-            account_sid = 'ACdba2e23161bdc5b6c1b6c19ab1331c12'
-            auth_token = '2cd3a01867d158c28be886adde0beb25'
+            account_sid = 'xxxxxxxxxxxxxxxxxxxx'
+            auth_token = 'xxxxxxxxxxxxxxxxxxx'
             client = Client(account_sid, auth_token)
             message = client.messages.create(
-                from_='+12408234653',
+                from_='+xxxxxxxxxx',
                 body="Your friend isn't feeling well, please take care of them.",
-                to='+17167172989'
+                to='+xxxxxxxxxxx'
             )
             print(message.sid)
             return {"message": "Please take care! I strongly urge you to consult a Counselor", "context": context}
@@ -142,7 +142,7 @@ def send_mail(courses):
 
 def get_emotion(message):
     API_ENDPOINT = "https://apis.paralleldots.com/v4/emotion"
-    API_KEY = "zXUG65fnA08gQW3bHWbmeFqklrUCagcU0KeDyc8yLFo"
+    API_KEY = "xxxxxxxxxxxxxxxxxxxxxx"
     data = {"api_key": API_KEY, "text": message}
     r = requests.post(url=API_ENDPOINT, data=data).json()
     result = r['emotion']["Sad"] + r['emotion']["Angry"]
