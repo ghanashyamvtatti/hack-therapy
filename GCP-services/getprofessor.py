@@ -40,14 +40,14 @@ def hello_world(request):
         {
           "to": [
             {
-              "email": "sharmasuryateja@gmail.com"
+              "email": "xxxx"
             }
           ],
           "subject": "hacktherapy"
         }
       ],
       "from": {
-        "email": "sambi97@gmail.com"
+        "email": "xxxx"
       },
       "content": [
         {
